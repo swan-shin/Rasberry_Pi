@@ -47,11 +47,48 @@
 
 import random # 난수 사용 위해서
 import math # 수학 함수들을 사용하기 위해서서
+
+# make_list
+# 기능: start 이상 end 미만의 정수 난수 n개를 갖는 리스트를 생성해서 반환
+
 def make_list(start, end, n):
     """start 이상 end 미만의 정수 난수 n개를 갖는 리스트를 생성해서 반환"""
-    return random_list = [random.randrange(start, end) for _ in range(n)]
+    random_list = [random.randrange(start, end,5) for _ in range(n)]
+    return random_list
 
-result = make_list(3, 100, 20)
-print(result)
+# array1 = make_list(1, 20 , 5)
+# print(array1)
 
 # def calculate_sum():
+# 기능: 숫자들을 저장하는 리스트를 전달받아서, 리스트의 모든 아이템들의 합을 리턴.
+def calculate_sum(array):
+    return sum(array)
+# sum_result = calculate_sum(array1)
+# print(sum_result)
+#
+# print('원소의 개수: ', len(array1))
+def calculate_mean(array):
+    something = []
+    for i in array:
+        something.append(i)
+    return sum(something)/len(something)
+# mean_array = calculate_mean(array1)
+# print(mean_array)
+
+def calculate_var(array):
+    var = 0
+    for x in array:
+        var += (x - calculate_mean(array))**2
+    v = var/(len(array)-1)
+    return v
+result = calculate_var([1, 2, 3, 4, 5])
+print(result)
+print(calculate_mean([1, 2, 3]))
+
+def calculate_stddev(array):
+    var = calculate_var(array)
+    return math.sqrt(var)
+squr = calculate_stddev([1,2,3,4,5])
+print(squr)
+
+def
