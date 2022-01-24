@@ -56,24 +56,22 @@ def make_list(start, end, n):
     random_list = [random.randrange(start, end,5) for _ in range(n)]
     return random_list
 
-# array1 = make_list(1, 20 , 5)
-# print(array1)
+array1 = make_list(1, 20 , 5)
+print(array1)
 
-# def calculate_sum():
-# 기능: 숫자들을 저장하는 리스트를 전달받아서, 리스트의 모든 아이템들의 합을 리턴.
 def calculate_sum(array):
     return sum(array)
-# sum_result = calculate_sum(array1)
-# print(sum_result)
-#
-# print('원소의 개수: ', len(array1))
+sum_result = calculate_sum(array1)
+print(sum_result)
+
+print('원소의 개수: ', len(array1))
 def calculate_mean(array):
     something = []
     for i in array:
         something.append(i)
     return sum(something)/len(something)
-# mean_array = calculate_mean(array1)
-# print(mean_array)
+mean_array = calculate_mean(array1)
+print(mean_array)
 
 def calculate_var(array):
     var = 0
@@ -91,4 +89,24 @@ def calculate_stddev(array):
 squr = calculate_stddev([1,2,3,4,5])
 print(squr)
 
-def
+def find_min_and_max(array):
+    """두 개 이상의 값을 return하는 함수는 tuple을 return 하는 함수"""
+    min_array = array[0] #첫 번째 원소를 넣어야 다음 수를 비교 가능
+    for x in array:
+        if x < min_array:
+            min_array = x
+            # ... max도 동일
+
+
+
+find_min_and_max([1,2,3,4,5])
+print(find_min_and_max([1,2,3,4,5]))
+
+def fin_min_and_max2(array):
+    """전달받은 리스트를 오름차순 정렬하는 함수,
+    정렬된 리스트의 첫번째 원소(최솟값), 마지막 원소(최댓값)"""
+    arrange = []
+    for x in array:
+        arrange.append(x)
+
+print(sorted([1, 3, 4, 5, 8, 11, 99, 843, 64 ,32], reverse=1))
