@@ -91,6 +91,9 @@ l = [int(x) for x in input().split()]
 arr = list(enumerate(l, 1))
 #enumerate 한 번 알아보기
 
+# 점수는 내림차순, 동일하면 id 작은 것(오름차순)
+arr.sort(key = lambda x:(-x[1], x[0])
+
 '''
 N명의 점수 상위 3명 출력
 내림차순 정렬 and 상위 0, 1, 2 index 출력
