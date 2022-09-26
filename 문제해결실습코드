@@ -86,7 +86,10 @@ elif 10 <= time <= 30:
 N = int(input())
 l = [int(x) for x in input().split()]
 
-arr = [[i+1], l[i] for i in range(N)]
+# arr = [[i+1], l[i] for i in range(N)]
+
+arr = list(enumerate(l, 1))
+#enumerate 한 번 알아보기
 
 '''
 N명의 점수 상위 3명 출력
