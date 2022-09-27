@@ -144,3 +144,329 @@ N= '학생 수' (4<= N <= 30,000)
 '''
 
 # 파이썬 권고 사항 if m==0: >> 이것 보다는 if m:  빈 리스트 (), [], null -> false 이런 부분 판단해서 if (True) 문 작성
+
+------------------------------------------------------문제풀이 정답--------------------------------------------------------------
+
+...
+# [sol 1]
+N, P = [ int(x) for x in input().split() ]
+ 
+if P <= N//2:
+    if P % 2 == 1 : print(P+1, N-P, N-P+1)
+    else : print(P-1, N-P+1, N-P+2)
+else :
+    if P % 2 == 1: print(N-P, N-P+1, P+1) 
+    else: print(N-P+1, N-P+2, P-1)
+ 
+# [sol 2]
+N, P = [ int(x) for x in input().split() ]
+ 
+if P % 2 : print(*sorted([ P+1, N-P, N-P+1 ]))
+else : print(*sorted([ P-1, N-P+1, N-P+2 ]))
+...
+ 
+# [sol 3]
+ 
+N, P = [ int(x) for x in input().split() ]
+ 
+x = P % 2
+print(*sorted([(P-1) + 2*x, (N-P+1) - x, (N-P+2) - x]))
+/**************************************************************
+    Problem: 5886
+    User: SWT01001
+    Language: Python
+    Result: Accepted
+    Time:27 ms
+    Memory:26800 kb
+****************************************************************/
+
+'''
+# [sol 1]
+arr = [ float(x) for x in input().split() ]
+ 
+arr.sort()
+dis = [ abs(x-3.5) for x in arr ]
+sol1 = arr[ dis.index(min(dis)) ]
+sol2 = arr[ dis.index(max(dis)) ]
+ 
+print('{:f} {:f}'.format(sol1, sol2))
+# print(f'{sol1:f} {sol2:f}') 
+# print('%f %f' % (sol1, sol2))
+'''
+ 
+ 
+# [sol 2]
+arr = [ float(x) for x in input().split() ]
+ 
+dis = [ [x, abs(x-3.5)] for x in arr ]
+sol1 = min(dis, key=lambda x: (x[1],x[0]))[0]
+sol2 = max(dis, key=lambda x: (x[1],-x[0]))[0]
+ 
+print(f'{sol1:f} {sol2:f}')
+/**************************************************************
+    Problem: 5884
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:28 ms
+    Memory:26800 kb
+****************************************************************/
+
+T = int(input())
+ 
+A, B, C = 300, 60, 10
+r1, r2, r3 = T//A, (T%A)//B, (T%A%B)//C
+ 
+if T%C : print(-1)
+else : print(r1, r2, r3)  
+/**************************************************************
+    Problem: 5888
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:26 ms
+    Memory:26800 kb
+****************************************************************/
+
+n = int(input())
+arr = [ int(input()) for i in range(n) ]
+  
+sol = 0
+for time in arr:
+    if time<10: fee=0
+    elif 10<=time<=30: fee=500
+    else: # 30분 초과일경우
+        # 10분당 300원 추가요금 부여
+        #time -= 30
+        #fee = 500 + time//10*300
+        #if time%10 : fee +=300
+          
+        #fee = 500 + (time -30)//10 * 300 + ( 300 if time%10 else 0 )
+  
+        fee = 500 + ((time-31)//10 +1)*300
+          
+        if fee>50000: fee=50000
+    sol += fee
+  
+print(sol)
+/**************************************************************
+    Problem: 5885
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:34 ms
+    Memory:26800 kb
+****************************************************************/
+
+
+N = int(input())
+l = [ int(x) for x in input().split() ]
+ 
+#arr = list(enumerate(l, 1))
+#arr.sort(key=lambda x: (-x[1], x[0]))
+ 
+arr = sorted( enumerate(l, 1), key=lambda x: (-x[1], x[0]) )
+ 
+print(arr[0][0], arr[1][0], arr[2][0])
+/**************************************************************
+    Problem: 5891
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:67 ms
+    Memory:34404 kb
+****************************************************************/ 사과
+
+'''
+# [sol 1]
+N = int(input())
+arr = [ [int(x) for x in input().split()] for _ in range(N) ]
+ 
+sol = 0
+for x, y in arr:
+    sol += y%x
+print(sol)
+'''
+ 
+ 
+# [sol 2]
+N = int(input())
+arr = [ [int(x) for x in input().split()] for _ in range(N) ]
+ 
+sol = [ y%x for x, y in arr ]
+print(sum(sol))
+ 
+/**************************************************************
+    Problem: 5890
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:36 ms
+    Memory:26800 kb
+****************************************************************/ 가장 가까운 짝수인 7의 배수
+
+N = int(input())
+ 
+a, b = divmod(N, 14)
+if N<=14 : sol = 14
+elif b>7 : sol = a*14 + 14
+else : sol = a*14
+print(sol)
+/**************************************************************
+    Problem: 5883
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:28 ms
+    Memory:26800 kb
+****************************************************************/
+
+'''
+# [sol 1]
+N, Sum = [ int(x) for x in input().split() ]
+ 
+tot = (1 + N) * N // 2
+lost = tot - Sum
+d, m = divmod(lost, 2)
+ 
+if m == 0 :
+    print('Error')
+elif d % 2 == 0 :
+    print('Error')
+elif d < 1 or d > (N - 1) :
+    print('Error')
+else :
+    print(d, d + 1)
+'''
+ 
+# [sol 2]
+N, Sum = [ int(x) for x in input().split() ]
+ 
+tot = (1 + N) * N // 2
+lost = tot - Sum
+d, m = divmod(lost, 2)
+ 
+if m and d % 2 and 1 <= d < N :
+    print(d, d+1)
+else:
+    print('Error')  
+/**************************************************************
+    Problem: 5962
+    User: SWT01001
+    Language: Python
+    Result: Accepted
+    Time:31 ms
+    Memory:26800 kb
+****************************************************************/ 찢어진 책
+
+'''
+# [sol 1]
+def get_root(num): #숫자근 얻기
+    while num >= 10:
+        num = sum([int(x) for x in str(num)])
+    return num
+ 
+N = int(input())
+arr = [ int(input()) for _ in range(N)]
+sol, max_root = 0, 0
+for x in arr:
+    root = get_root(x)
+    if max_root < root :
+        max_root, sol = root, x
+    elif max_root == root :
+        sol = min(sol, x)
+print(sol)
+ 
+ 
+# [sol 2]
+def get_root(num): 
+    while num >= 10:
+        num = sum([int(x) for x in str(num)])
+    return num
+ 
+N = int(input())
+arr = sorted([ int(input()) for _ in range(N)])
+d = [ get_root(x) for x in arr ]
+sol = arr[ d.index(max(d)) ]
+print(sol)
+ 
+'''
+ 
+ 
+# [sol 3]
+def get_root(num): 
+    while num >= 10:
+        num = sum([int(x) for x in str(num)])
+    return num
+ 
+N = int(input())
+arr = [ int(input()) for _ in range(N)]
+d = [ [x, get_root(x)] for x in arr ]
+sol = max(d, key=lambda x:(x[1], -x[0]))
+print(sol[0])
+ 
+/**************************************************************
+    Problem: 5904
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:36 ms
+    Memory:26800 kb
+****************************************************************/ 숫자근
+
+# [sol 1]
+'''
+s = input()
+sol = 10
+for i in range(1, len(s)):
+    if s[i]==s[i-1]: sol += 5
+    else: sol +=10
+print(sol)
+'''
+ 
+# [sol 2]
+s= input()
+sol=0
+prev= 0
+for cur in s:
+    if cur == prev : sol += 5
+    else: sol += 10
+    prev = cur
+print(sol)
+ 
+     
+ 
+ 
+/**************************************************************
+    Problem: 5897
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:30 ms
+    Memory:26800 kb
+****************************************************************/ 그릇
+
+K = int(input()) 
+N = int(input()) 
+info = [ input().split() for _ in range(N) ] 
+arr = [ [int(t), z] for t,z in info ] 
+ 
+tot=0
+for t, z in arr:
+    tot += t
+    if tot>210 : break
+    if z=='T':       
+        #K += 1
+        #if K == 9 : K=1
+        K = (K%8) + 1
+ 
+print(K) 
+ 
+/**************************************************************
+    Problem: 5887
+    User: SWT01007
+    Language: Python
+    Result: Accepted
+    Time:26 ms
+    Memory:26800 kb
+****************************************************************/ 폭탄 돌리기
