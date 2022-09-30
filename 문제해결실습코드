@@ -470,3 +470,40 @@ print(K)
     Time:26 ms
     Memory:26800 kb
 ****************************************************************/ 폭탄 돌리기
+
+
+#미로 탈출 로봇
+
+N = input()
+S = input().split()
+from collections import deque
+
+readl = sys.stdin.readline
+C, R = [int(x) for x in readl().split()]
+sc, sr, ec, er = [int(x) for x in readl().split()]
+row = [[1]*(C+2)]
+arr = row + [[1]+ [int(x) for x in radl().strip()] + [1] for _ in range(R)]
+
+def BFS():
+    move = ((1, 0), (-1, 0), (0,1), (0,-1))
+    # que 초기화 및 방문표시 list 생성
+    q = deque()
+    chk = [[0]*(C+2) for _ in range(R+2)]
+    # 초기상태 que에 넣기, 초기상태 방문표시
+    q.append((sr, sc, 0)) # 상태: r, c, 시간
+    chk[sr][sc] = 1
+    while q:
+        # 큐에서 하나 꺼내서
+        r, c, t = q.popleft() #l.pop(0)
+        # 큐에서 꺼낸게 sol이면 리턴
+        # 다음상태(4방탐색)로 발전 가능하면
+        for dr, dc in move:
+            nr, nc, nt = r+dr, c+dc, t+1
+            #1. 격자내부, 2. 방문안한곳, 3.길(0)
+            if arr[nr][nc]!=0: continue
+            if chk[nr][nc]==1: continue
+                
+        # 다음 상태 큐에 넣기, 방문표시
+        q.append((nr,nc,nt))
+        chk[nr][nc] = 1
+    return -1 #도착불가
